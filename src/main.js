@@ -10,6 +10,11 @@ Vue.use(vueParticleLine)
 
 Vue.config.productionTip = false
 
+const user = localStorage.getItem('user')
+if(user == null){
+	location.href = '/login.html'
+}
+
 new Vue({
   router,
   render: h => h(App)

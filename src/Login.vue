@@ -1,19 +1,21 @@
 <template>
 	<div class="login">
 		<vue-particle-line>
+			<!-- 登录框 -->
 			<div class="form">
 				<el-form ref="form" :model="login" label-width="80px">
 					<el-form-item class="ceshi" label="用户名">
-						<el-input v-model="login.name"></el-input>
+						<el-input v-model="login.ebbName"></el-input>
 					</el-form-item>
 					<el-form-item label="密  码">
-						<el-input v-model="login.password"></el-input>
+						<el-input type="password" v-model="login.passWord"></el-input>
 					</el-form-item>
 					<el-form-item class="submit">
 						<el-button class="button" type="primary" @click="onSubmit">登录</el-button>
 					</el-form-item>
 				</el-form>
 			</div>
+			<!-- 提示框 -->
 			<div @click="drawer = true" type="primary" class="pic">
 				<div>
 					<img src="./assets/images/ebbinghaus.jpg" alt="">
@@ -22,7 +24,6 @@
 					<span>有问题？</span>
 				</div>
 			</div>
-			
 			<el-drawer title="我是标题" :visible.sync="drawer" :with-header="false" direction="ltr" >
 				<div class="word" style="height: 100vh; overflow-y: scroll;">
 					<el-tag>我的自述</el-tag>
@@ -49,10 +50,42 @@
 		data(){
 			return {
 				login:{
-					name:'',
-					password:''
+					ebbName:'',
+					passWord:''
 				},
 				drawer: false
+			}
+		},
+		methods:{
+			onSubmit (){
+				const ebbName = this.login.ebbName.trim()
+				const passWord = this.login.passWord.trim()
+				if(ebbName!=="" && passWord!==""){
+					let user = {
+						ebbName : ebbName,
+						passWord : passWord
+					}
+					
+					const userCopy = JSON.parse(localStorage.getItem('userCopy')) 
+					
+					if(userCopy){
+						if(user.ebbName!==userCopy.ebbName || user.passWord!==userCopy.passWord){
+							this.$message.error('信息错误');
+						}else{
+							this.storage(user)
+						}
+					}else{
+						this.storage(user)
+					}	
+				}else{
+					this.$message.error('不可空登录哦');
+				}
+			},
+			//存储并跳转
+			storage(user){
+				localStorage.setItem('user',JSON.stringify(user))
+				localStorage.setItem('userCopy',JSON.stringify(user))
+				location.href='/'
 			}
 		}
 
@@ -83,6 +116,7 @@
 			height 100px
 			text-align center
 			color #FFFFFF
+			cursor pointer
 			img
 				width 80%
 				height 80%

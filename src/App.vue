@@ -10,6 +10,26 @@
 	</div>
 </template>
 
+
+
+<script>
+	export default{
+		name:'Home',
+		data() {
+			return {
+				
+			}
+		},
+		mounted() {
+			
+			
+		},
+		methods:{
+			
+		}
+	}
+</script>
+
 <style lang="stylus" scoped>
 	// 粒子背景调整,不设置z-index页面内容不可用
 	#app >>> .vue-particle-line .canvas[data-v-06727b55] {
