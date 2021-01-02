@@ -1,4 +1,5 @@
 module.exports = {
+	//多页打包配置
 	pages: {
 		index: {
 			// 入口文件
@@ -18,6 +19,7 @@ module.exports = {
 			title: 'Login Page'
 		}
 	},
+	
 	css: {
 		extract: false
 	}
