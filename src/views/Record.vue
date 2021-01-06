@@ -3,7 +3,7 @@
 		<el-container>
 			<el-aside width="200px">
 				<div class="menu">
-					<el-button type="primary" round>主要按钮</el-button>
+					<el-button type="primary" round @click="create=true">增加记录</el-button>
 					<el-button type="primary" round>主要按钮</el-button>
 					<el-button type="primary" round>主要按钮</el-button>
 					<el-button type="primary" round>主要按钮</el-button>
@@ -20,16 +20,18 @@
 				</el-table>
 			</el-main>
 		</el-container>
+		<record-create :create="create" @getVisible="changeCreate"></record-create>
 	</div>
 </template>
 
 <script>
 	// @ is an alias to /src
-
+	import RecordCreate from '../components/record/Create.vue'
 	export default {
 		name: 'Record',
 		data() {
 			return {
+				create:false,
 				tableData: [{
 					date: '2016-05-02',
 					name: '王小虎',
@@ -65,7 +67,14 @@
 				}]
 			}
 		},
-		components: {}
+		components: {
+			RecordCreate
+		},
+		methods:{
+			changeCreate(val){
+				this.create = val
+			}
+		}
 	}
 </script>
 

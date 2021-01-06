@@ -25,11 +25,11 @@
 				
 				<div class="out">
 					<el-popconfirm
-						confirm-button-text='好的'
-						cancel-button-text='不用了'
+						confirm-button-text='YES'
+						cancel-button-text='NO'
 						icon="el-icon-info"
 						icon-color="red"
-						title="这是一段内容确定删除吗？"
+						title="确定要退出吗？"
 						@confirm="out"
 					>
 						<el-button type="primary" slot="reference" circle>
@@ -73,7 +73,7 @@
 		watch: {
 			$route: {
 				handler: function(val){
-					console.log(val)
+					//console.log(val)
 					if(val.path==='/'){
 						this.value2=true
 					}else{

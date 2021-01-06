@@ -53,7 +53,70 @@
 					ebbName:'',
 					passWord:''
 				},
-				drawer: false
+				drawer: false,
+				data:[
+						{
+							id:1,
+							month:'1月',
+							children:[]
+						},
+						{
+							id:2,
+							month:'2月',
+							children:[]
+						},
+						{
+							id:3,
+							month:'3月',
+							children:[]
+						},
+						{
+							id:4,
+							month:'4月',
+							children:[]
+						},
+						{
+							id:5,
+							month:'5月',
+							children:[]
+						},
+						{
+							id:6,
+							month:'6月',
+							children:[]
+						},
+						{
+							id:7,
+							month:'7月',
+							children:[]
+						},
+						{
+							id:8,
+							month:'8月',
+							children:[]
+						},
+						{
+							id:9,
+							month:'9月',
+							children:[]
+						},
+						{
+							id:10,
+							month:'10月',
+							children:[]
+						},
+						{
+							id:11,
+							month:'11月',
+							children:[]
+						},
+						{
+							id:12,
+							month:'12月',
+							children:[]
+						},
+						
+					]
 			}
 		},
 		methods:{
@@ -75,7 +138,9 @@
 							this.storage(user)
 						}
 					}else{
+						localStorage.setItem("data",JSON.stringify(this.data))
 						this.storage(user)
+						
 					}	
 				}else{
 					this.$message.error('不可空登录哦');

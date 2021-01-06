@@ -1,4 +1,5 @@
 module.exports = {
+	publicPath:'./',
 	//多页打包配置
 	pages: {
 		index: {
