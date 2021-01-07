@@ -53,6 +53,7 @@
 				data[month-1].children.push({id:month+day,day:this.form.time,study:[this.form.study],time:''})
 				let newData = JSON.stringify(data) 
 				localStorage.setItem('data',newData)
+				location.reload()
 			},
 			
 

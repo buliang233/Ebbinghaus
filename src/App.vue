@@ -22,7 +22,6 @@
 				<el-main>
 					<router-view />
 				</el-main>
-				
 				<div class="out">
 					<el-popconfirm
 						confirm-button-text='YES'
@@ -39,8 +38,10 @@
 					
 				</div>
 			</el-container>
+			
 
 		</vue-particle-line>
+		
 	</div>
 </template>
 
@@ -97,8 +98,13 @@
 		background-color #283644 
 		z-index -1
 	}
+	::-webkit-scrollbar {
+		/*隐藏滚轮*/
+		display: none;
+	}
 	
 	.el-container
+		box-sizing content-box
 		position absolute 
 		top 0
 		right 0
@@ -111,15 +117,14 @@
 		.out
 			position absolute
 			right 5%
-			top 5%
+			top 3%
 			width 20px
 			height 20px
 			.el-button
 				padding 5px
 				font-size 24px
-			
 	.el-switch
-		top 60%
+		top 40%
 		left 80%
 		width 130px
 		height 30px
