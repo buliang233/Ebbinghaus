@@ -20,7 +20,9 @@
 				</el-header>
 
 				<el-main>
-					<router-view />
+					<keep-alive>
+						<router-view />
+					</keep-alive>
 				</el-main>
 				<div class="out">
 					<el-popconfirm

@@ -8,7 +8,7 @@
 					</el-col>
 				</el-form-item>
 				<el-form-item label="活动名称">
-					<el-input v-model="form.study"></el-input>
+					<el-input type="textarea" v-model="form.study"></el-input>
 				</el-form-item>
 			</el-form>
 			<div slot="footer" class="dialog-footer">
@@ -50,10 +50,9 @@
 				let data = JSON.parse(localStorage.getItem('data'))
 				let month = this.form.time.substr(5,2)
 				let day = this.form.time.substr(8,2)
-				data[month-1].children.push({id:month+day,day:this.form.time,study:[this.form.study],time:''})
+				data[month-1].children.push({id:month+day,day:this.form.time,study:[this.form.study],time:0,startTime:[],endTime:[],isFinish:"false"})
 				let newData = JSON.stringify(data) 
 				localStorage.setItem('data',newData)
-				location.reload()
 			},
 			
 
