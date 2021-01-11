@@ -5,7 +5,7 @@
 				<div class="menu">
 					<el-button type="primary" round @click="create=true">增加记录</el-button>
 					<el-button type="primary" round @click="modifyClick">修改记录</el-button>
-					<el-button type="primary" round>主要按钮</el-button>
+					<el-button type="primary" round @click="deleteClick">删除记录</el-button>
 					<el-button type="primary" round @click="timeClick">计时</el-button>
 				</div>
 			</el-aside>
@@ -44,6 +44,7 @@
 		
 		<record-create :create="create" @getCreateVisible="changeCreate"></record-create>
 		<record-modify :modify="modify" :currentRow="currentRow" :currentPage="currentPage" @getModifyVisible="changeModify"></record-modify>
+		<record-delete :deleteRecord="deleteRecord" :currentRow="currentRow" :currentPage="currentPage" @getDeleteVisible="changeDelete"></record-delete>
 		
 	</div>
 </template>
@@ -52,12 +53,14 @@
 	// @ is an alias to /src
 	import RecordCreate from '../components/record/Create.vue'
 	import RecordModify from '../components/record/Modify.vue'
+	import RecordDelete from '../components/record/Delete.vue'
 	export default {
 		name: 'Record',
 		data() {
 			return {
 				create:false,
 				modify:false,
+				deleteRecord:false,
 				tableData: [],
 				currentPage:1,
 				currentRow:'',
@@ -65,12 +68,21 @@
 		},
 		components: {
 			RecordCreate,
-			RecordModify
+			RecordModify,
+			RecordDelete
 		},
 		mounted() {
 			this.getData(1)
 		},
 		methods:{
+			//删除事件
+			deleteClick(){
+				if(this.currentRow===""){
+					this.$message.error('请先选择一条记录');
+				}else{
+					this.deleteRecord=true
+				}
+			},
 			//修改页事件
 			modifyClick(){
 				if(this.currentRow===""){
@@ -135,6 +147,12 @@
 			//修改记录模态框回调
 			changeModify(val){
 				this.modify = val
+				this.getData(this.currentPage)
+				this.currentRow=""
+			},
+			//修改记录模态框回调
+			changeDelete(val){
+				this.deleteRecord = val
 				this.getData(this.currentPage)
 				this.currentRow=""
 			},
