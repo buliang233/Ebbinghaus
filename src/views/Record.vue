@@ -4,7 +4,7 @@
 			<el-aside width="200px">
 				<div class="menu">
 					<el-button type="primary" round @click="create=true">增加记录</el-button>
-					<el-button type="primary" round>主要按钮</el-button>
+					<el-button type="primary" round @click="modifyClick">修改记录</el-button>
 					<el-button type="primary" round>主要按钮</el-button>
 					<el-button type="primary" round @click="timeClick">计时</el-button>
 				</div>
@@ -42,7 +42,8 @@
 			</el-container>
 		</el-container>
 		
-		<record-create :create="create" @getVisible="changeCreate"></record-create>
+		<record-create :create="create" @getCreateVisible="changeCreate"></record-create>
+		<record-modify :modify="modify" :currentRow="currentRow" :currentPage="currentPage" @getModifyVisible="changeModify"></record-modify>
 		
 	</div>
 </template>
@@ -50,23 +51,34 @@
 <script>
 	// @ is an alias to /src
 	import RecordCreate from '../components/record/Create.vue'
+	import RecordModify from '../components/record/Modify.vue'
 	export default {
 		name: 'Record',
 		data() {
 			return {
 				create:false,
+				modify:false,
 				tableData: [],
 				currentPage:1,
 				currentRow:'',
 			}
 		},
 		components: {
-			RecordCreate
+			RecordCreate,
+			RecordModify
 		},
 		mounted() {
 			this.getData(1)
 		},
 		methods:{
+			//修改页事件
+			modifyClick(){
+				if(this.currentRow===""){
+					this.$message.error('请先选择一条记录');
+				}else{
+					this.modify=true
+				}
+			},
 			//根据复习完成情况添加对应的背景色
 			tableRowClassName(row){
 				if(row.row.isFinish==="true"){
@@ -119,6 +131,12 @@
 			changeCreate(val){
 				this.create = val
 				this.getData(this.currentPage)
+			},
+			//修改记录模态框回调
+			changeModify(val){
+				this.modify = val
+				this.getData(this.currentPage)
+				this.currentRow=""
 			},
 			//分页发生变化的回调
 			pageChange(n){

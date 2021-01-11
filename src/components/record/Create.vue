@@ -2,12 +2,12 @@
 	<div>
 		<el-dialog title="创建记录" :visible.sync="dialogFormVisible" :modal="false" @close="changeVisible">
 			<el-form ref="form" :model="form" label-width="80px">
-				<el-form-item label="活动时间">
+				<el-form-item label="学习日期">
 					<el-col>
 						<el-date-picker type="date" placeholder="选择日期" v-model="form.time" style="width: 100%;"></el-date-picker>
 					</el-col>
 				</el-form-item>
-				<el-form-item label="活动名称">
+				<el-form-item label="学习内容">
 					<el-input type="textarea" v-model="form.study"></el-input>
 				</el-form-item>
 			</el-form>
@@ -33,7 +33,7 @@
 		},
 		methods: {
 			changeVisible() {
-				this.$emit("getVisible", false)
+				this.$emit("getCreateVisible", false)
 			},
 			dateFormat(dateData) {
 				var date = new Date(dateData)
@@ -50,7 +50,7 @@
 				let data = JSON.parse(localStorage.getItem('data'))
 				let month = this.form.time.substr(5,2)
 				let day = this.form.time.substr(8,2)
-				data[month-1].children.push({id:month+day,day:this.form.time,study:[this.form.study],time:0,startTime:[],endTime:[],isFinish:"false"})
+				data[month-1].children.push({id:month+day,day:this.form.time,study:this.form.study,time:0,startTime:[],endTime:[],isFinish:"false"})
 				let newData = JSON.stringify(data) 
 				localStorage.setItem('data',newData)
 			},
