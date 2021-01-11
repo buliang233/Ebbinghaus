@@ -1,7 +1,15 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+import echarts from 'echarts'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+import 'swiper/swiper-bundle.css'
 import './assets/styles/normalize.css'
+
+Vue.use(VueAwesomeSwiper, /* { default options with global component } */)
+
+//把echarts加入到vue实例中
+Vue.prototype.$echarts = echarts
 
 //element-ui
 import ElementUI from 'element-ui'
