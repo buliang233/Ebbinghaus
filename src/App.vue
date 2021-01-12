@@ -76,7 +76,6 @@
 		watch: {
 			$route: {
 				handler: function(val){
-					//console.log(val)
 					if(val.path==='/'){
 						this.value2=true
 					}else{
