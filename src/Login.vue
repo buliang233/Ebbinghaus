@@ -150,7 +150,7 @@
 			storage(user){
 				localStorage.setItem('user',JSON.stringify(user))
 				localStorage.setItem('userCopy',JSON.stringify(user))
-				location.href='/'
+				location.href='/index.html'
 			}
 		}
 
