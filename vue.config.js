@@ -1,5 +1,5 @@
 module.exports = {
-	publicPath: '/Ebbinghaus/dist' ,
+	publicPath: './' ,
 	//多页打包配置
 	pages: {
 		index: {

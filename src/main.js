@@ -26,7 +26,7 @@ Vue.config.productionTip = false
 //判断登录态
 const user = localStorage.getItem('user')
 if(user == null){
-	location.href = '/Ebbinghaus/dist/login.html'
+	location.href = '/login.html'
 }
 
 new Vue({
